@@ -13,10 +13,15 @@ export default function FetchApi() {
                 setLoading(false);
             })
             .catch(error => console.error(error));
-    }, []);
+    }, [datos]);
 
     useEffect(() => {
-        fetchTodos(datos)
+        if (datos.length > 0) {
+            fetchTodos(datos)
+        } else {
+            fetchTodos([{id: 1, title: 'No hay datos', completed: false}])
+        }
+       
     }
     , [datos]);
 
