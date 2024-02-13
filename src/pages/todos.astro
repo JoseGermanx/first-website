@@ -1,10 +1,11 @@
 ---
-import FetchApi from '../components/FetchApi.jsx'
+import FetchApi from "../components/FetchApi.jsx";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="betacode Academy.">
-<FetchApi client:load />
-
+  <div class="container mx-auto">
+    <FetchApi client:load />
+  </div>
 </Layout>
 ```
