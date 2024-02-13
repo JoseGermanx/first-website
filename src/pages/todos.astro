@@ -4,9 +4,13 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="betacode Academy.">
-  <div class="container mx-auto w-96">
+  <div class="columns-1 mx-auto">
     <h1 class="text-4xl font-bold text-center mb-8">Lista de tareas</h1>
-    <p>Ejemplo de consumo de api: https://jsonplaceholder.typicode.com/todos</p>
+    <p class="text-xl text-center mb-8">
+      Ejemplo de consumo de api: https://jsonplaceholder.typicode.com/todos
+    </p>
+  </div>
+  <div class="columns-3 mx-56 w-auto">
     <FetchApi client:load />
   </div>
 </Layout>
