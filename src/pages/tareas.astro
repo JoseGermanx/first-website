@@ -2,9 +2,12 @@
 
 import TareasList from "../components/TareasList";
 import Layout from "../layouts/Layout.astro";
+import FetchTareas from "../components/FetchTareas";
 ---
 
 <Layout title="Tareas">
     <TareasList client:load />
+
+    <FetchTareas client:load />
 
 </Layout>
