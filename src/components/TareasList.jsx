@@ -33,9 +33,13 @@ export default function TareasList() {
       document.getElementById('tarea').value = '';  };
 
   return (
-    <div className="container justify-center">
-      <h1>Agregar una nueva tarea</h1>
-      <form>
+    <div className="container flex-col justify-center">
+      <h1 className="text-4xl font-bold text-center mb-8">App Lista de tareas</h1>
+      <p className="flex justify-center">Aplicacion de lista de tareas, que se conecta a un back-end para guardar, listar, editar y borrar tareas.</p>     
+      <form className="flex justify-center mt-4">
+        <label className="p-2" htmlFor="tarea">
+          Agrega una tarea:
+        </label>
         <input
           className="border-2 border-gray-300 text-gray-800 rounded-sm"
           type="text"
