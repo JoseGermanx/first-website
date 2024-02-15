@@ -1,7 +1,10 @@
 ---
+
+import TareasList from "../components/TareasList";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Tareas">
+    <TareasList client:load />
 
-    </Layout>
+</Layout>

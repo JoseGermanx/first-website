@@ -1,0 +1,56 @@
+import { useEffect, useState } from "react";
+// import { useStore } from "@nanostores/react";
+
+// import { todos, addTarea } from "../tareasStore";
+
+export default function TareasList() {
+  const [tarea, setTarea] = useState({});
+  const [label, setLabel] = useState("");
+  // const $tareas = useStore(todos);
+
+  const labelHandler = (e) => {
+    setLabel(e.target.value);
+  };
+
+  const enviarTarea = (e) => {
+    e.preventDefault();
+    setTarea({ label: "Tarea 1", done: false });
+    fetch("http://192.168.1.95:3245/addtodos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ label: label, done: false }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+      document.getElementById('tarea').value = '';  };
+
+  return (
+    <div className="container justify-center">
+      <h1>Agregar una nueva tarea</h1>
+      <form>
+        <input
+          className="border-2 border-gray-300 text-gray-800 rounded-sm"
+          type="text"
+          name="tarea"
+          id="tarea"
+          onChange={(e) => labelHandler(e)}
+        />
+        <button
+          className=" bg-gray-700 text-white p-2"
+          type="submit"
+          onClick={(e) => enviarTarea(e)}
+        >
+          Agregar
+        </button>
+      </form>
+    </div>
+  );
+}
