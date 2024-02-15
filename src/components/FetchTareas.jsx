@@ -16,7 +16,7 @@ export default function FetchTareas() {
                 setLoading(false);
             })
             .catch(error => console.error(error));
-    }, [datos]);
+    }, []);
 
     useEffect(() => {
         if (datos.length > 0) {
@@ -27,6 +27,7 @@ export default function FetchTareas() {
        
     }
     , [datos]);
+    
 
     return (
         <div class="columns-2 mx-56 w-auto mt-4">
@@ -36,7 +37,7 @@ export default function FetchTareas() {
                     <div class="flex min-w-0 gap-x-4">
                     <div class="min-w-0 flex-auto">
                     <h3 class="text-sm font-semibold leading-6 text-gray-900">{todo.label}</h3>
-                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">{todo.done ? 'Completed' : 'Not Completed'}</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">{todo.done ? 'Completed' : 'Not completed'}</p>
                     </div>
                     </div>
                 </li>

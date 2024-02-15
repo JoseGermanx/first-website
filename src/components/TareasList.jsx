@@ -30,8 +30,11 @@ export default function TareasList() {
         console.error("Error:", error);
       });
 
-      document.getElementById('tarea').value = '';  };
-
+      document.getElementById('tarea').value = '';
+      location.reload();
+    
+    };
+      
   return (
     <div className="container flex-col justify-center">
       <h1 className="text-4xl font-bold text-center mb-8">App Lista de tareas</h1>
