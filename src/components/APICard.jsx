@@ -15,7 +15,7 @@ const APICard = () => {
         <div>
             {data.map((item, index) => (
                 <div key={index}>
-                    <h2>{item.title}</h2>
+                    <h2>{item.label}</h2>
                     <p>{item.completed ? 'Completada' : 'Pendiente'}</p>
                 </div>
             ))}

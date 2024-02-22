@@ -9,7 +9,7 @@ export default function FetchTareas() {
     const $todos = useStore(todos);
 
     useEffect(() => {
-        fetch('http://192.168.1.88:3245/todos')
+        fetch('http://192.168.1.87:3245/todos')
             .then(response => response.json())
             .then(data => {
                 setDatos(data);
@@ -32,7 +32,7 @@ export default function FetchTareas() {
     return (
         <div class="columns-2 mx-56 w-auto mt-4">
         <ul role="list" class="divide-y divide-gray-100 mx-auto">
-            {loading ? "Cargando..." : $todos.map(todo => (
+            {loading & $todos.length > 0 ? "Cargando..." : $todos.map(todo => (
                 <li class="flex justify-between gap-x-6 py-5" key={todo.id}>
                     <div class="flex min-w-0 gap-x-4">
                     <div class="min-w-0 flex-auto">
