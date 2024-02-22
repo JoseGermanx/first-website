@@ -9,7 +9,7 @@ export default function FetchTareas() {
     const $todos = useStore(todos);
 
     useEffect(() => {
-        fetch('http://192.168.1.95:3245/todos')
+        fetch('http://192.168.1.88:3245/todos')
             .then(response => response.json())
             .then(data => {
                 setDatos(data);
