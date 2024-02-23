@@ -27,6 +27,20 @@ export default function FetchTareas() {
        
     }
     , []);
+
+    const doneHandle = (id) => {
+        fetch('http://192.168.1.87:3245/done/' + id, {
+            method: 'PUT'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
     
 
     return (
@@ -37,6 +51,7 @@ export default function FetchTareas() {
                         <th class="px-4 py-2">ID</th>
                         <th class="px-4 py-2">Title</th>
                         <th class="px-4 py-2">Completed</th>
+                        <th class="px-4 py-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +60,10 @@ export default function FetchTareas() {
                             <td class="border px-4 py-2">{item.id}</td>
                             <td class="border px-4 py-2">{item.label}</td>
                             <td class="border px-4 py-2">{item.completed ? 'Completada' : 'Pendiente'}</td>
+                            <td class="border px-4 py-2">
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={(e)=> doneHandle(e.target.value)}>Eliminar</button>
+                            </td>  
                         </tr>
                     ))}
                 </tbody>
