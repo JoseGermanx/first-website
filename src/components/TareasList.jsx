@@ -15,7 +15,7 @@ export default function TareasList() {
   const enviarTarea = (e) => {
     e.preventDefault();
     setTarea({ label: "Tarea 1", done: false });
-    fetch("http://192.168.1.87:3245/addtodos", {
+    fetch("http://192.168.1.88:3245/addtodos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
