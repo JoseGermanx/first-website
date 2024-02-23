@@ -26,23 +26,29 @@ export default function FetchTareas() {
         }
        
     }
-    , [datos]);
+    , []);
     
 
     return (
-        <div class="columns-2 mx-56 w-auto mt-4">
-        <ul role="list" class="divide-y divide-gray-100 mx-auto">
-            {loading & $todos.length > 0 ? "Cargando..." : $todos.map(todo => (
-                <li class="flex justify-between gap-x-6 py-5" key={todo.id}>
-                    <div class="flex min-w-0 gap-x-4">
-                    <div class="min-w-0 flex-auto">
-                    <h3 class="text-sm font-semibold leading-6 text-gray-900">{todo.label}</h3>
-                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">{todo.done ? 'Completed' : 'Not completed'}</p>
-                    </div>
-                    </div>
-                </li>
-            ))}
-        </ul>
+        <div class="columns-1 mx-56 w-auto mt-4">
+            <table class="table-auto">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">ID</th>
+                        <th class="px-4 py-2">Title</th>
+                        <th class="px-4 py-2">Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {loading & datos.length > 0 ? "Cargando..." : datos.map((item, index) => (
+                        <tr key={index}>
+                            <td class="border px-4 py-2">{item.id}</td>
+                            <td class="border px-4 py-2">{item.label}</td>
+                            <td class="border px-4 py-2">{item.completed ? 'Completada' : 'Pendiente'}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }

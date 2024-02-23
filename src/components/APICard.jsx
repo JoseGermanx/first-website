@@ -7,20 +7,31 @@ const APICard = () => {
         fetch('/endpoint.json')
         .then(response => response.json())
         .then(data => setData(data))
-    }, [data])
+    }, [])
 
   return (
-    <div>
-        <h1>API Card</h1>
-        <div>
-            {data.map((item, index) => (
-                <div key={index}>
-                    <h2>{item.label}</h2>
-                    <p>{item.completed ? 'Completada' : 'Pendiente'}</p>
-                </div>
-            ))}
+    <>
+        <div className=''>
+            <table class="table-auto">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">ID</th>
+                        <th class="px-4 py-2">Title</th>
+                        <th class="px-4 py-2">Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((item, index) => (
+                        <tr key={index}>
+                            <td class="border px-4 py-2">{item.id}</td>
+                            <td class="border px-4 py-2">{item.label}</td>
+                            <td class="border px-4 py-2">{item.completed ? 'Completada' : 'Pendiente'}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
-    </div>
+    </>
   )
 }
 
