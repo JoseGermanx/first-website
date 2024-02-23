@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiUrl } from "../config/api";
 // import { useStore } from "@nanostores/react";
 
 // import { todos, addTarea } from "../tareasStore";
@@ -15,7 +16,7 @@ export default function TareasList() {
   const enviarTarea = (e) => {
     e.preventDefault();
     setTarea({ label: "Tarea 1", done: false });
-    fetch("http://192.168.1.88:3245/addtodos", {
+    fetch(apiUrl + "addtodos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

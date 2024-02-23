@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import { todos, fetchTodos  } from '../todosStore'
 import { useStore } from '@nanostores/react'
+import { apiUrl } from '../config/api';
 
 export default function FetchTareas() {
     const [datos, setDatos] = useState([]);
@@ -13,7 +14,7 @@ export default function FetchTareas() {
     const $todos = useStore(todos);
 
     useEffect(() => {
-        fetch('http://192.168.1.88:3245/todos')
+        fetch(apiUrl + 'todos')
             .then(response => response.json())
             .then(data => {
                 setDatos(data);
@@ -33,7 +34,7 @@ export default function FetchTareas() {
     , []);
 
     const doneHandle = (e) => {
-        fetch('http://192.168.1.88:3245/done/' + e.target.value, {
+        fetch(apiUrl + 'done/' + e.target.value, {
             method: 'PUT'
         })
         .then(response => response.json())
@@ -48,19 +49,20 @@ export default function FetchTareas() {
     }
 
     const handleDelete = (e) => {
-        fetch('http://192.168.1.88:3245/delete/' + e.target.value,
+        fetch(apiUrl + 'delete/' + e.target.value,
         {
             method: 'DELETE'
         })
         .then(response => response.json())
         .then(data => {
+            alert(`Tarea ${e.target.value} eliminada.`)
+            location.reload();
             console.log('Success:', data);
         })
         .catch(error => {
             console.error('Error:', error);
         });
-        alert(`Tarea ${e.target.value} eliminada.`)
-        location.reload();
+       
     }
 
     const modifySpanToUpdate = (e) => {
@@ -79,7 +81,7 @@ export default function FetchTareas() {
 
     const handleSave = (e) => {
 
-        fetch('http://192.168.1.88:3245/update/' + idUpdate,
+        fetch(apiUrl + 'update/' + idUpdate,
         {
             method: 'PUT',
             headers: {
@@ -115,7 +117,7 @@ export default function FetchTareas() {
                     {loading ? "Cargando datos..." : datos.map((item, index) => (
                         <tr key={`input-${index}`}>
                             <td className="border px-4 py-2">{item.id}</td>                            
-                            <td className="border px-4 py-2" id='update'>{ showSaveButton ? <input className='text-grey-500' style={{width: "100%", height: "100%"}} type="text" id="updateInput" onChange={(e)=> handleChange(e)} /> : item.label}</td>
+                            <td className="border px-4 py-2" id='update'>{ showSaveButton ? <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' defaultValue={item.label} style={{width: "100%", height: "100%"}} type="text" id="updateInput" onChange={(e)=> handleChange(e)} /> : item.label}</td>
                             <td className="border px-4 py-2">{item.done ? 'Completed' : 'To Complete'}</td>
                             <td className="border px-4 py-2">
                                 {showSaveButton ? <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-2" onClick={handleSave} >Save</button> : 
