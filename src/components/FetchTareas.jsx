@@ -10,6 +10,7 @@ export default function FetchTareas() {
     const [update, setUpdate] = useState('Tarea actualizada');
     const [idUpdate, setIdUpdate] = useState('');
     const [value, setValue] = useState('');
+    const [idLabel, setIdLabel] = useState('update' + idUpdate);
 
     const $todos = useStore(todos);
 
@@ -69,6 +70,12 @@ export default function FetchTareas() {
         setShowSaveButton(true)
         setValue(e.target.value)
         setIdUpdate(e.target.value)
+        setIdLabel('update' + e.target.value)
+
+        const span = document.getElementById('update' + idUpdate);
+        span.innerHTML = `<input class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' default-value=${span.innerHTML} style={{width: "100%", height: "100%"}} type="text" id="updateInput" onchange="(e)=> handleChange(e)" />`
+
+
     }
 
     const handleChange = (e) => {
@@ -117,7 +124,7 @@ export default function FetchTareas() {
                     {loading ? "Cargando datos..." : datos.map((item, index) => (
                         <tr key={`input-${index}`}>
                             <td className="border px-4 py-2">{item.id}</td>                            
-                            <td className="border px-4 py-2" id='update'>{ showSaveButton ? <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' defaultValue={item.label} style={{width: "100%", height: "100%"}} type="text" id="updateInput" onChange={(e)=> handleChange(e)} /> : item.label}</td>
+                            <td className="border px-4 py-2" id={'update' + item.id}>{ showSaveButton ? <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' defaultValue={item.label} style={{width: "100%", height: "100%"}} type="text" id="updateInput" onChange={(e)=> handleChange(e)} /> : item.label}</td>
                             <td className="border px-4 py-2">{item.done ? 'Completed' : 'To Complete'}</td>
                             <td className="border px-4 py-2">
                                 {showSaveButton ? <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-2" onClick={handleSave} >Save</button> : 
